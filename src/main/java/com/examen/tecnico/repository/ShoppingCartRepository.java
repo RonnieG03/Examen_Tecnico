@@ -1,0 +1,15 @@
+package com.examen.tecnico.repository;
+
+import com.examen.tecnico.model.ShoppingCart;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
+    List<ShoppingCart> findByClientUserName(String userName);
+    void deleteByClientId(Long clientId);
+    public Long countByClientId(Long clientId);
+
+}
