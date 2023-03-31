@@ -18,8 +18,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
         return null;
     }
     @Override
-    public List<ShoppingCart> getListByClient(String userName) {
-        return shoppingCartRepository.findByClientUserName(userName);
+    public List<ShoppingCart> getListByClient(String username) {
+        return shoppingCartRepository.findByClientUsername(username);
     }
     @Override
     public void addProduct(ShoppingCart shoppingCart) {
