@@ -1,22 +1,27 @@
 package com.examen.tecnico.service;
 
 import com.examen.tecnico.model.ProductEntity;
+import com.examen.tecnico.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl {
     @Value("${service.product.url}")
     private String productUrl;
-    @Autowired
+    private final ProductRepository productRepository;
     public final RestTemplate restTemplate;
-    public ProductServiceImpl(RestTemplate restTemplate) {
+    @Autowired
+    public ProductServiceImpl(RestTemplate restTemplate, ProductRepository productRepository) {
         this.restTemplate = restTemplate;
+        this.productRepository = productRepository;
     }
 
     public List<ProductEntity> getAllProduct(){
@@ -25,7 +30,8 @@ public class ProductServiceImpl {
     }
 
     public ProductEntity getProductById(Long id){
-        return null;
+        ProductEntity product = restTemplate.getForObject(productUrl + "/products/" + id, ProductEntity.class);
+        return product;
     }
 
     //public void saveAllProduct(List<ProductEntity> products){
