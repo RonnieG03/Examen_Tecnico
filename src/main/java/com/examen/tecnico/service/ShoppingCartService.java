@@ -2,6 +2,7 @@ package com.examen.tecnico.service;
 
 import com.examen.tecnico.model.ShoppingCart;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ShoppingCartService {
@@ -11,4 +12,5 @@ public interface ShoppingCartService {
     public void removeProduct(Long id);
     void cleanShoppingCart(Long clientId);
     Long getCountByClient(Long clientId);
+    Double getTotalPaymentByDate(LocalDate monthValue);
 }
